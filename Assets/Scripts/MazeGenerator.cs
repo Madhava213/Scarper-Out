@@ -31,6 +31,11 @@ public class MazeGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        height = 100;
+        width = 100;
+        wallHeight = 1;
+        wallSeparation = 1;
+
         //Prepare the wall prefab according to the set measures.
         wallPrefab.transform.position = new Vector3(wallSeparation, wallHeight, wallSeparation);
 
@@ -70,8 +75,8 @@ public class MazeGenerator : MonoBehaviour
         cellRecord = new Stack<Vector2Int>();
 
         //Initialize the position of the starting point. It can be on (0,0) or random.
-        //Vector2Int position = new Vector2Int(Random.Range(0, height),Random.Range(0, width));
-        Vector2Int position = new Vector2Int(0, 0);
+        Vector2Int position = new Vector2Int(Random.Range(0, height),Random.Range(0, width));
+        // Vector2Int position = new Vector2Int(0, 0);
 
         //Initialize the used tiles with 1 after the starting was used.
         usedTiles = 1;
