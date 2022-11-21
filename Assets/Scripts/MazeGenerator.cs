@@ -10,6 +10,8 @@ public class MazeGenerator : MonoBehaviour
     public GameObject wallPrefab;
     public GameObject startPrefab;
     public GameObject goalPrefab;
+    public GameObject monsterPrefab;
+    public Vector2 monsterNumRange = new Vector2(15,30);
 
     //Reference to the player's FPSController to change its position.
     GameObject player;
@@ -253,6 +255,10 @@ public class MazeGenerator : MonoBehaviour
                     Instantiate(wallPrefab, new Vector3(wallSeparation * (j * 2 + 1), wallHeight / 2, i * 2 * wallSeparation), Quaternion.identity);
                 }
             }
+        }
+        
+        for (int i = 0; i < Random.Range(monsterNumRange.x,monsterNumRange.y); i++){
+            Instantiate(monsterPrefab, new Vector3(Random.Range(0, height) * 2 * wallSeparation, wallHeight / 2, Random.Range(0, width) * 2 * wallSeparation), Quaternion.identity);
         }
 
         //Instantiates the goal in a random position inside the maze.
