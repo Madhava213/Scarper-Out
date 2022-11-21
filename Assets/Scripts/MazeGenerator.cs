@@ -31,11 +31,6 @@ public class MazeGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        height = 100;
-        width = 100;
-        wallHeight = 1;
-        wallSeparation = 1;
-
         //Prepare the wall prefab according to the set measures.
         wallPrefab.transform.position = new Vector3(wallSeparation, wallHeight, wallSeparation);
 
@@ -45,7 +40,7 @@ public class MazeGenerator : MonoBehaviour
 
         //Prepara the Player GameObject to assign the start position.
         player = GameObject.Find("Player");
-    
+
         //Run Maze generation recursive backtracker algorithm.
         GenerateMaze();
 

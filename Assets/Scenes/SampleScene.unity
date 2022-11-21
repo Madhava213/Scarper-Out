@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18827602, g: 0.191138, b: 0.1910977, a: 1}
+  m_IndirectSpecularColor: {r: 0.18827617, g: 0.19113809, b: 0.19109794, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -497,7 +497,7 @@ MonoBehaviour:
   wallPrefab: {fileID: 1991425379441505305, guid: 4571ce2509ecfb349b384010c42f78f4, type: 3}
   startPrefab: {fileID: 9092789938908423476, guid: df6cf0069bfcfe243a6a1b0dcbb440bc, type: 3}
   goalPrefab: {fileID: 8579095880873092286, guid: 6466c29b757cf324f88f4f1e98304fff, type: 3}
-  height: 0
-  width: 0
-  wallHeight: 0
-  wallSeparation: 0
+  height: 100
+  width: 100
+  wallHeight: 1
+  wallSeparation: 1
