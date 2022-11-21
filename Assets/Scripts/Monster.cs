@@ -5,6 +5,16 @@ using UnityEngine;
 public class Monster : MonoBehaviour
 {
     public GameObject skeleton;
+    public ParticleSystem FireParticles;
+
+    private void Start()
+    {
+        FireParticles.Stop();
+    }
+    private void Update()
+    {
+        
+    }
 
     private void OnCollisionEnter(Collision other)
     {

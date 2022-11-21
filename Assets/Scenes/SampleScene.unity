@@ -658,7 +658,8 @@ MonoBehaviour:
   startPrefab: {fileID: 9092789938908423476, guid: df6cf0069bfcfe243a6a1b0dcbb440bc, type: 3}
   goalPrefab: {fileID: 8579095880873092286, guid: 6466c29b757cf324f88f4f1e98304fff, type: 3}
   monsterPrefab: {fileID: 1857290216502575212, guid: be62e5d35e0c8964eac92637583594bd, type: 3}
-  height: 100
-  width: 100
+  monsterNumRange: {x: 15, y: 30}
+  height: 50
+  width: 50
   wallHeight: 1
   wallSeparation: 1
