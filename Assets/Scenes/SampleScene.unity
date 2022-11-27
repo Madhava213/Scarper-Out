@@ -381,6 +381,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 1143370402}
+  spotLight: {fileID: 638180925}
   speed: 4
   gravity: -9.81
   jumpHeight: 1
@@ -451,7 +452,7 @@ GameObject:
   - component: {fileID: 2061636982}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -500,6 +501,7 @@ MonoBehaviour:
   startPrefab: {fileID: 9092789938908423476, guid: df6cf0069bfcfe243a6a1b0dcbb440bc, type: 3}
   goalPrefab: {fileID: 8579095880873092286, guid: 6466c29b757cf324f88f4f1e98304fff, type: 3}
   goalIndicatorPrefab: {fileID: 3142297389642066055, guid: d5907ec8773b2d145b1b4652e3db47ff, type: 3}
+  goalIndicatorGroundPrefab: {fileID: 7652337090557558248, guid: 678f23e18e77c124c8880c7407f1ecdc, type: 3}
   monsterPrefab: {fileID: 1857290216502575212, guid: be62e5d35e0c8964eac92637583594bd, type: 3}
   speedPowerUpPrefab: {fileID: 768022775315525708, guid: e2ea09c7c52bae4429d36aa35b7ab4d0, type: 3}
   pathPowerUpPrefab: {fileID: 1427137001505422852, guid: cfcb10f0a873e424a970474a335b8823, type: 3}

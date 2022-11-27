@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9136425359202839269}
   - component: {fileID: 8286999838988549180}
+  - component: {fileID: 2150003984314521664}
   m_Layer: 0
   m_Name: Monster
   m_TagString: Untagged
@@ -46,8 +47,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31b2a5f3629848946a173c895e550f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeleton: {fileID: 4474319043228351608}
   FireParticles: {fileID: 3623546678334760548}
+  onFire: 0
+--- !u!135 &2150003984314521664
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1857290216502575212}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.25
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4474319043228351608
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,7 +73,6 @@ GameObject:
   - component: {fileID: 1826914795320844383}
   - component: {fileID: 3737041149412888287}
   - component: {fileID: 6978470756076246449}
-  - component: {fileID: 1005191528412593161}
   m_Layer: 0
   m_Name: Skeleton
   m_TagString: Untagged
@@ -132,19 +145,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &1005191528412593161
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4474319043228351608}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &3497107194763016496
 PrefabInstance:
   m_ObjectHideFlags: 0

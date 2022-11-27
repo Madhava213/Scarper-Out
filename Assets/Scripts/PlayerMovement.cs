@@ -5,7 +5,10 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
+    public GameObject spotLight;
     public float speed = 12f;
+    private float originalSpeed;
+    private float originalLighting = 0.5f;
     Vector3 velocity;
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
@@ -13,6 +16,11 @@ public class PlayerMovement : MonoBehaviour
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
     bool isGrounded;
+
+    private void Start()
+    {
+        originalSpeed = speed;
+    }
     void Update()
     {
         //Check Ground and Reset Velocity
@@ -40,5 +48,42 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
 
 
+    }
+
+    public void PowerUpSpeed(){
+        speed += 3;
+        StartCoroutine(ResetSpeed());
+    }
+
+    public void PowerUpLighting(){
+        originalLighting = RenderSettings.ambientIntensity;
+        RenderSettings.ambientIntensity = 2;
+        spotLight.SetActive(false);
+        StartCoroutine(ResetLighting());
+    }
+
+    public void PowerUpPath() { 
+        StartCoroutine(ResetPath());
+    }
+
+    private IEnumerator ResetSpeed() {
+    while(true) {
+            yield return new WaitForSeconds(10);
+            speed = originalSpeed;
+        }
+    }
+
+    private IEnumerator ResetLighting() {
+    while(true) {
+            yield return new WaitForSeconds(10);
+            RenderSettings.ambientIntensity = originalLighting;
+            spotLight.SetActive(true);
+        }
+    }
+
+    private IEnumerator ResetPath() {
+    while(true) {
+            yield return new WaitForSeconds(10);
+        }
     }
 }

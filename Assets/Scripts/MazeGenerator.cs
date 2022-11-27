@@ -11,6 +11,8 @@ public class MazeGenerator : MonoBehaviour
     public GameObject startPrefab;
     public GameObject goalPrefab;
     public GameObject goalIndicatorPrefab;
+    public GameObject goalIndicatorGroundPrefab;
+
     public GameObject monsterPrefab;
     public GameObject speedPowerUpPrefab;
     public GameObject pathPowerUpPrefab;
@@ -269,6 +271,7 @@ public class MazeGenerator : MonoBehaviour
         //Instantiates the goal in a random position inside the maze.
         GameObject goal = Instantiate(goalPrefab, new Vector3(Random.Range(0, height) * 2 * wallSeparation, wallHeight / 2, Random.Range(0, width) * 2 * wallSeparation), Quaternion.identity);
         Instantiate(goalIndicatorPrefab, new Vector3(goal.transform.position.x,goal.transform.position.y + 5,goal.transform.position.z), Quaternion.identity);
+        Instantiate(goalIndicatorGroundPrefab,goal.transform.position, Quaternion.identity);
     
         //Instantiates Powerups in a random position inside the maze.
         for (int i = 0; i < Random.Range(powerUpNumRange.x,powerUpNumRange.y); i++){
