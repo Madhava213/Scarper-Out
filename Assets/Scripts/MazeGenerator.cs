@@ -8,6 +8,7 @@ public class MazeGenerator : MonoBehaviour
     //Reference to the prefabs for the walls, start and end points.
     public GameObject floorPrefab;
     public GameObject wallPrefab;
+    public GameObject nodePrefab;
     public GameObject startPrefab;
     public GameObject goalPrefab;
     public GameObject goalIndicatorPrefab;
@@ -32,6 +33,8 @@ public class MazeGenerator : MonoBehaviour
     //Maze matrix to store all the cells.
     //The Cells store if they have been used and the connection with other cells.
     nsMaze.Cell[,] maze;
+
+    bool[,] pathMaze;
     //Stack to keep the track of the past positions for the backtracking.
     Stack<Vector2Int> cellRecord;
     //Counter for the total of used tiles.
@@ -53,6 +56,8 @@ public class MazeGenerator : MonoBehaviour
         //Run Maze generation recursive backtracker algorithm.
         GenerateMaze();
 
+        createPaths();
+
         //Create the maze using the wall prefab. 
         createMaze();
     }
@@ -60,6 +65,18 @@ public class MazeGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    }
+
+    void createPaths()
+    {
+        pathMaze = new bool[2*height, 2*width];
+        for (int i = 0; i < 2*height; i++)
+        {
+            for (int j = 0; j < 2*width; j++)
+            {
+                pathMaze[i,j] = true;
+            }
+        }
     }
 
     void GenerateMaze()
@@ -253,17 +270,30 @@ public class MazeGenerator : MonoBehaviour
             for (int j = 0; j < width; j++)
             {
                 Instantiate(wallPrefab, new Vector3(wallSeparation * (j * 2 + 1), wallHeight / 2, wallSeparation * (i * 2 + 1)), Quaternion.identity);
+                pathMaze[i*2+1,j*2+1] = false;
                 if (!maze[i, j].connected[2])
                 {
                     Instantiate(wallPrefab, new Vector3(j * 2 * wallSeparation, wallHeight / 2, wallSeparation * (i * 2 + 1)), Quaternion.identity);
+                    pathMaze[i*2+1,j*2] = false;
                 }
                 if (!maze[i, j].connected[1])
                 {
                     Instantiate(wallPrefab, new Vector3(wallSeparation * (j * 2 + 1), wallHeight / 2, i * 2 * wallSeparation), Quaternion.identity);
+                    pathMaze[i*2,j*2+1] = false;
                 }
             }
         }
         
+        for (int i = 0; i < 2*height; i++)
+        {
+            for (int j = 0; j < 2*width; j++)
+            {
+                if(pathMaze[i,j]){
+                    Instantiate(nodePrefab, new Vector3(j, wallHeight *2, i), Quaternion.identity);
+                }
+            }
+        }
+
         for (int i = 0; i < Random.Range(monsterNumRange.x,monsterNumRange.y); i++){
             Instantiate(monsterPrefab, new Vector3(Random.Range(0, height) * 2 * wallSeparation, wallHeight / 2, Random.Range(0, width) * 2 * wallSeparation), Quaternion.identity);
         }

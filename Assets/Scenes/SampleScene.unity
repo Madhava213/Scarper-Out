@@ -665,6 +665,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floorPrefab: {fileID: 498230421332343703, guid: 57fbbd49cead3fc40ad381ff3b4e88dc, type: 3}
   wallPrefab: {fileID: 1991425379441505305, guid: 4571ce2509ecfb349b384010c42f78f4, type: 3}
+  nodePrefab: {fileID: 3119002278946952474, guid: 60e3e57ca9c72d649b3a5bec871d80a1, type: 3}
   startPrefab: {fileID: 9092789938908423476, guid: df6cf0069bfcfe243a6a1b0dcbb440bc, type: 3}
   goalPrefab: {fileID: 8579095880873092286, guid: 6466c29b757cf324f88f4f1e98304fff, type: 3}
   goalIndicatorPrefab: {fileID: 3142297389642066055, guid: d5907ec8773b2d145b1b4652e3db47ff, type: 3}
