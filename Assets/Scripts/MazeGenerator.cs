@@ -34,7 +34,7 @@ public class MazeGenerator : MonoBehaviour
     //The Cells store if they have been used and the connection with other cells.
     nsMaze.Cell[,] maze;
 
-    bool[,] pathMaze;
+    nsMaze.Node[,] pathMaze;
     //Stack to keep the track of the past positions for the backtracking.
     Stack<Vector2Int> cellRecord;
     //Counter for the total of used tiles.
@@ -69,12 +69,12 @@ public class MazeGenerator : MonoBehaviour
 
     void createPaths()
     {
-        pathMaze = new bool[2*height, 2*width];
+        pathMaze = new nsMaze.Node[2*height, 2*width];
         for (int i = 0; i < 2*height; i++)
         {
             for (int j = 0; j < 2*width; j++)
             {
-                pathMaze[i,j] = true;
+                pathMaze[i,j] = new nsMaze.Node(new Vector2(i * wallSeparation,j * wallSeparation));
             }
         }
     }
@@ -270,16 +270,19 @@ public class MazeGenerator : MonoBehaviour
             for (int j = 0; j < width; j++)
             {
                 Instantiate(wallPrefab, new Vector3(wallSeparation * (j * 2 + 1), wallHeight / 2, wallSeparation * (i * 2 + 1)), Quaternion.identity);
-                pathMaze[i*2+1,j*2+1] = false;
+                // pathMaze[i*2+1,j*2+1].position = new Vector2(wallSeparation * i*2+1,wallSeparation * j*2+1);
+                pathMaze[i*2+1,j*2+1].setNodeFalse();
                 if (!maze[i, j].connected[2])
                 {
                     Instantiate(wallPrefab, new Vector3(j * 2 * wallSeparation, wallHeight / 2, wallSeparation * (i * 2 + 1)), Quaternion.identity);
-                    pathMaze[i*2+1,j*2] = false;
+                    // pathMaze[i*2+1,j*2].position = new Vector2(wallSeparation * i*2+1,wallSeparation * j*2);
+                    pathMaze[i*2+1,j*2].setNodeFalse();
                 }
                 if (!maze[i, j].connected[1])
                 {
                     Instantiate(wallPrefab, new Vector3(wallSeparation * (j * 2 + 1), wallHeight / 2, i * 2 * wallSeparation), Quaternion.identity);
-                    pathMaze[i*2,j*2+1] = false;
+                    // pathMaze[i*2,j*2+1].position = new Vector2(wallSeparation * i*2,wallSeparation * j*2+1);
+                    pathMaze[i*2,j*2+1].setNodeFalse();
                 }
             }
         }
@@ -288,8 +291,8 @@ public class MazeGenerator : MonoBehaviour
         {
             for (int j = 0; j < 2*width; j++)
             {
-                if(pathMaze[i,j]){
-                    Instantiate(nodePrefab, new Vector3(j, wallHeight *2, i), Quaternion.identity);
+                if(pathMaze[i,j].isFreeSpace()){
+                    Instantiate(nodePrefab, new Vector3(pathMaze[i,j].position.y, 0, pathMaze[i,j].position.x), Quaternion.identity);
                 }
             }
         }
