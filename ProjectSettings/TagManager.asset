@@ -8,6 +8,7 @@ TagManager:
   - SpeedPowerUp
   - LightPowerUp
   - PathPowerUp
+  - Node
   layers:
   - Default
   - TransparentFX

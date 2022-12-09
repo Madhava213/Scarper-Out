@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
     bool isGrounded;
+    public GameManager gameManager;
 
     private void Start()
     {
@@ -62,7 +63,8 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(ResetLighting());
     }
 
-    public void PowerUpPath() { 
+    public void PowerUpPath() {
+        gameManager.runAStar();
         StartCoroutine(ResetPath());
     }
 
@@ -84,6 +86,7 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator ResetPath() {
     while(true) {
             yield return new WaitForSeconds(10);
+            gameManager.resetPath();
         }
     }
 }

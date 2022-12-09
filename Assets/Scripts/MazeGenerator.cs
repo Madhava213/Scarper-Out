@@ -286,13 +286,15 @@ public class MazeGenerator : MonoBehaviour
                 }
             }
         }
-        
+
+        GameManager managerScript = this.gameObject.GetComponent<GameManager>();
         for (int i = 0; i < 2*height; i++)
         {
             for (int j = 0; j < 2*width; j++)
             {
                 if(pathMaze[i,j].isFreeSpace()){
-                    Instantiate(nodePrefab, new Vector3(pathMaze[i,j].position.y, 0, pathMaze[i,j].position.x), Quaternion.identity);
+                    GameObject newNode = Instantiate(nodePrefab, new Vector3(pathMaze[i,j].position.y, 0, pathMaze[i,j].position.x), Quaternion.identity);
+                    managerScript.allNodes.Add(newNode);
                 }
             }
         }

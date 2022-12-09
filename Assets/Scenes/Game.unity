@@ -457,6 +457,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 8
+  gameManager: {fileID: 2061636980}
 --- !u!143 &1143370402
 CharacterController:
   m_ObjectHideFlags: 0
@@ -617,6 +618,7 @@ GameObject:
   - component: {fileID: 2061636981}
   - component: {fileID: 2061636980}
   - component: {fileID: 2061636982}
+  - component: {fileID: 2061636983}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameController
@@ -636,6 +638,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 790c980e11727d545a213d18d83ee99c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allNodes: []
+  Player: {fileID: 1143370397}
+  Goal: {fileID: 0}
+  AStarAlgorithm: {fileID: 2061636983}
 --- !u!4 &2061636981
 Transform:
   m_ObjectHideFlags: 0
@@ -680,3 +686,15 @@ MonoBehaviour:
   width: 50
   wallHeight: 1
   wallSeparation: 1.5
+--- !u!114 &2061636983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2061636979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 029ce9602647c374a825ef5267683046, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
