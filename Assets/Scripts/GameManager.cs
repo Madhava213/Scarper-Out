@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
         foreach (GameObject node in allNodes)
         {
             float distanceToPlayer = Vector3.Distance(node.transform.position,Player.transform.position);
-            float distanceToGoal = Vector3.Distance(node.transform.position,Player.transform.position);
+            float distanceToGoal = Vector3.Distance(node.transform.position,Goal.transform.position);
 
             if(playerDis == -1.0f || distanceToPlayer < playerDis){
                 startIndex = allNodes.IndexOf(node);
@@ -43,13 +43,16 @@ public class GameManager : MonoBehaviour
             allNodePositions.Add(node.transform.position);
 
         }
+
         pathNodes = AStarAlgorithm.AStar(goalIndex, startIndex, allNodePositions, allEdges);
 
-        foreach (int nodeIndex in pathNodes)
-        {
-                allNodes[nodeIndex].transform.GetChild(0).gameObject.SetActive(true);
-                allNodes[nodeIndex].transform.GetChild(1).gameObject.SetActive(true);
-            
+        if(pathNodes != null){
+            foreach (int nodeIndex in pathNodes)
+            {
+                    allNodes[nodeIndex].transform.GetChild(0).gameObject.SetActive(true);
+                    allNodes[nodeIndex].transform.GetChild(1).gameObject.SetActive(true);
+
+            }
         }
     }
 
@@ -63,30 +66,39 @@ public class GameManager : MonoBehaviour
     }
     public void setEdges()
     {
+        // RaycastHit hit;
+        // Vector3 rayDir;
+        // float rayDis;
+        allEdges = new List<nsMaze.Edge>();
         foreach (GameObject node in allNodes)
         {
-            node.GetComponent<NodeData>().clearNodes();
-            foreach (GameObject nodeAlt in allNodes)
-            {
-                if (node != nodeAlt)
-                {
-                    RaycastHit hit;
-                    Vector3 rayDir = (nodeAlt.transform.position - node.transform.position).normalized;
-                    float rayDis = Vector3.Distance(node.transform.position, nodeAlt.transform.position);
-                    if (Physics.Raycast(transform.position, rayDir, out hit, rayDis))
-                    {
-                        if (hit.collider.gameObject.tag == "Node")
-                        {
-                            if (!node.GetComponent<NodeData>().isConnected(nodeAlt))
-                            {
-                                allEdges.Add(new nsMaze.Edge(node, nodeAlt));
-                                node.GetComponent<NodeData>().connectNode(nodeAlt);
-                                nodeAlt.GetComponent<NodeData>().connectNode(node);
-                            }
-                        }
-                    }
-                }
+            NodeData nodeScript = node.GetComponent<NodeData>();
+
+            foreach(Vector3 connection in nodeScript.getConnections()){
+                allEdges.Add(new nsMaze.Edge(node.transform.position, connection));
             }
+
+            // nodeScript.clearNodes();
+            // foreach (GameObject nodeAlt in allNodes)
+            // {
+            //     if (node != nodeAlt)
+            //     {
+            //         rayDir  = (nodeAlt.transform.position - node.transform.position).normalized;
+            //         rayDis  = Vector3.Distance(node.transform.position, nodeAlt.transform.position);
+            //         if (Physics.Raycast(transform.position, rayDir, out hit, rayDis))
+            //         {
+            //             if (hit.collider.gameObject.tag == "Node")
+            //             {
+            //                 if (!node.GetComponent<NodeData>().isConnected(nodeAlt))
+            //                 {
+            //                     allEdges.Add(new nsMaze.Edge(node, nodeAlt));
+            //                     node.GetComponent<NodeData>().connectNode(nodeAlt);
+            //                     nodeAlt.GetComponent<NodeData>().connectNode(node);
+            //                 }
+            //             }
+            //         }
+            //     }
+            // }
         }
     }
 }

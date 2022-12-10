@@ -288,16 +288,49 @@ public class MazeGenerator : MonoBehaviour
         }
 
         GameManager managerScript = this.gameObject.GetComponent<GameManager>();
+        managerScript.allNodes = new List<GameObject>();
         for (int i = 0; i < 2*height; i++)
         {
             for (int j = 0; j < 2*width; j++)
             {
                 if(pathMaze[i,j].isFreeSpace()){
                     GameObject newNode = Instantiate(nodePrefab, new Vector3(pathMaze[i,j].position.y, 0, pathMaze[i,j].position.x), Quaternion.identity);
+                    NodeData script = newNode.GetComponent<NodeData>();
+                    
+                    // N,S,E,W - Required
+                    if(i < 2*height-1 && pathMaze[i+1,j].isFreeSpace()){
+                        script.connectNode(new Vector3(pathMaze[i+1,j].position.y, 0, pathMaze[i+1,j].position.x));
+                    }
+                    if(j < 2*width-1 && pathMaze[i,j+1].isFreeSpace()){
+                        script.connectNode(new Vector3(pathMaze[i,j+1].position.y, 0, pathMaze[i,j+1].position.x));
+                    }
+                    if(i > 0 && pathMaze[i-1,j].isFreeSpace()){
+                        script.connectNode(new Vector3(pathMaze[i-1,j].position.y, 0, pathMaze[i-1,j].position.x));
+                    }
+                    if(j > 0 && pathMaze[i,j-1].isFreeSpace()){
+                        script.connectNode(new Vector3(pathMaze[i,j-1].position.y, 0, pathMaze[i,j-1].position.x));
+                    }
+                    
+                    // Not Required
+                    // if(i < 2*height-1 && j < 2*width-1 && pathMaze[i+1,j+1].isFreeSpace()){
+                    //     script.connectNode(new Vector3(pathMaze[i+1,j+1].position.y, 0, pathMaze[i+1,j+1].position.x));
+                    // }
+                    // if(i > 0 && j > 0 && pathMaze[i-1,j-1].isFreeSpace()){
+                    //     script.connectNode(new Vector3(pathMaze[i-1,j-1].position.y, 0, pathMaze[i-1,j-1].position.x));
+                    // }
+                    // if(i > 0 && j < 2*width-1 && pathMaze[i-1,j+1].isFreeSpace()){
+                    //     script.connectNode(new Vector3(pathMaze[i-1,j+1].position.y, 0, pathMaze[i-1,j+1].position.x));
+                    // }
+                    // if(i < 2*height-1 && j > 0 && pathMaze[i+1,j-1].isFreeSpace()){
+                    //     script.connectNode(new Vector3(pathMaze[i+1,j-1].position.y, 0, pathMaze[i+1,j-1].position.x));
+                    // }
+                    
                     managerScript.allNodes.Add(newNode);
                 }
             }
         }
+
+        managerScript.setEdges();
 
         for (int i = 0; i < Random.Range(monsterNumRange.x,monsterNumRange.y); i++){
             Instantiate(monsterPrefab, new Vector3(Random.Range(0, height) * 2 * wallSeparation, wallHeight / 2, Random.Range(0, width) * 2 * wallSeparation), Quaternion.identity);
@@ -307,7 +340,8 @@ public class MazeGenerator : MonoBehaviour
         GameObject goal = Instantiate(goalPrefab, new Vector3(Random.Range(0, height) * 2 * wallSeparation, wallHeight / 2, Random.Range(0, width) * 2 * wallSeparation), Quaternion.identity);
         Instantiate(goalIndicatorPrefab, new Vector3(goal.transform.position.x,goal.transform.position.y + 5,goal.transform.position.z), Quaternion.identity);
         Instantiate(goalIndicatorGroundPrefab,goal.transform.position, Quaternion.identity);
-    
+        managerScript.Goal = goal;
+
         //Instantiates Powerups in a random position inside the maze.
         for (int i = 0; i < Random.Range(powerUpNumRange.x,powerUpNumRange.y); i++){
             Instantiate(lightPowerUpPrefab, new Vector3(Random.Range(0, height) * 2 * wallSeparation, wallHeight / 2, Random.Range(0, width) * 2 * wallSeparation), Quaternion.identity);

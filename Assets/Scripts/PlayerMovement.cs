@@ -70,14 +70,14 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator ResetSpeed() {
     while(true) {
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(20);
             speed = originalSpeed;
         }
     }
 
     private IEnumerator ResetLighting() {
     while(true) {
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(20);
             RenderSettings.ambientIntensity = originalLighting;
             spotLight.SetActive(true);
         }
@@ -85,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator ResetPath() {
     while(true) {
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(20);
             gameManager.resetPath();
         }
     }

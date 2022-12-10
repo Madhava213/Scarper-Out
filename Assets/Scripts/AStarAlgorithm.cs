@@ -104,11 +104,10 @@ public class AStarAlgorithm : MonoBehaviour
         List<int> findNeighbors(int current)
         {
             List<int> neighbors = new List<int>();
-
             foreach(nsMaze.Edge edge in edges)
             {
-                Vector3 pointStart = edge.getNode1().transform.position;
-                Vector3 pointEnd = edge.getNode2().transform.position;
+                Vector3 pointStart = edge.getNode1();
+                Vector3 pointEnd = edge.getNode2();
                 // endpoints 1 & 2 of an edge
                 int p1 = nodes.FindIndex(p => p.x == pointStart.x && p.y == pointStart.y && p.z == pointStart.z);
                 int p2 = nodes.FindIndex(p => p.x == pointEnd.x && p.y == pointEnd.y && p.z == pointEnd.z);

@@ -680,10 +680,10 @@ MonoBehaviour:
   speedPowerUpPrefab: {fileID: 768022775315525708, guid: e2ea09c7c52bae4429d36aa35b7ab4d0, type: 3}
   pathPowerUpPrefab: {fileID: 1427137001505422852, guid: cfcb10f0a873e424a970474a335b8823, type: 3}
   lightPowerUpPrefab: {fileID: 6982087462066910592, guid: e209d3b1eea428b4bbf76ebde052e44c, type: 3}
-  monsterNumRange: {x: 15, y: 30}
-  powerUpNumRange: {x: 15, y: 30}
-  height: 50
-  width: 50
+  monsterNumRange: {x: 15, y: 25}
+  powerUpNumRange: {x: 15, y: 25}
+  height: 25
+  width: 25
   wallHeight: 1
   wallSeparation: 1.5
 --- !u!114 &2061636983

@@ -5,16 +5,20 @@ using nsMaze;
 
 public class NodeData : MonoBehaviour
 {
-    private List<GameObject> connectedNodes;
+    private List<Vector3> connectedNodes = new List<Vector3>();
 
-    public void connectNode(GameObject newNode){
+    public void connectNode(Vector3 newNode){
         connectedNodes.Add(newNode);
     }
 
     public void clearNodes(){
         connectedNodes.Clear();
     }
-    public bool isConnected(GameObject node){
+    public bool isConnected(Vector3 node){
         return connectedNodes.Contains(node);
+    }
+
+    public List<Vector3> getConnections(){
+        return connectedNodes;
     }
 }

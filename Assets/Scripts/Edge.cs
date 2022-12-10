@@ -7,19 +7,19 @@ namespace nsMaze
     public class Edge
     {
         //Variable to store points
-        private GameObject Node1;
-        private GameObject Node2;
-        public Edge(GameObject node1, GameObject node2)
+        private Vector3 Node1;
+        private Vector3 Node2;
+        public Edge(Vector3 node1, Vector3 node2)
         {
             Node1 = node1;
             Node2 = node2;
         }
 
-        public GameObject getNode1(){
+        public Vector3 getNode1(){
             return Node1;
         }
 
-        public GameObject getNode2(){
+        public Vector3 getNode2(){
             return Node2;
         }
     }
