@@ -1,44 +1,67 @@
-# IK Arm
+# Scarper Out
 
 ## Authors
 
 -   Madhava Raveendra
+-   Sheshasai Sairam
 
 ## Description
 
-This project includes a robot arm generated in Untiy with Forward and Inverse Kinematics implemented. The use will be able to interact with the Arms to view the motion of the Arms based on their Inverse Kinematics Implementation.
+Scarper Out is an interactive game where the player has to reach the end goal by navigating a randomly generated maze. The maze contains three different powerups which help the player reach the goal. The lighting powerup increases the lighting for the player, the speed powerup increases the speed of the player, and the path finding power up shows a path from the player location to the end goal. The maze also contains monsters that move towards the player if it sees the player. If a player collides with a monster then the player gets teleported to a random location in the maze.
 
 ## Features
 
--   Dual Robot Arms with Forward Kinematics - Default <br />
--   Inverse Kinematics using FABRIK <br />
--   User can move the camera freely around the scene <br />
--   Manual and automatic Mode <br />
--   User can allow the arm to interact with an Objec in scene <br />
+-   Maze Generation using Recursive Backtracking <br />
+-   A-Star Algorithm for Path Finding Powerup <br />
+-   Particle System for Fire Effect <br />
+-   Speed Powerup Increases Movement Speed <br />
+-   Lighting Powerup Increases Lighting <br />
 
-## Code
+## Key Algorithms and Approaches
 
-I am using Unity3D Game Engine for the implementation of this project. Using spheres as Joints and Cubes as the arm segments, I am constructing a bi-joint robot arm by joining them using basic transformations and forward kinematics. Using Unity's Collider System, we are implementing collisions on the lifters of the arms towards the object in the scene. The user is allowed to interact with the motion of the arms using Targets represented by small spheres in Manual Mode of the scene. The arms have inverse kinematics implemented using the FABRIK algorithm. You can switch from manual to automatic mode using the button given in the game. At first switch to automatic, one of the arms navigates to the object and picks it up. The user can move the arms to see its interaction with the arms and click on the object to drop it in Manual Mode.
+### Recursive Backtracking
 
-## Execution
+We chose recursive backtracking for our maze generation since it allows for an easy, fast, and simple implementation for a maze generating algorithm. In this algorithm, a 2-dimensional grid of cell objects is used to indicate the position of the walls. Starting from a random point in the grid, a random adjacent cell in a cardinal direction is visited and added to a stack. If all adjacent cells have been visited then that cell is removed from the stack. This process is repeated till only the starting cell is left in the stack. While this algorithm is fast, its biggest bottleneck is that it requires a lot of memory for the stack. So for really large mazes this algorithm is inefficient, and would be a big limiting factor if we were to scale up the size of the maze.
 
-Use the button below to navigate to the source code.
-Find the 'Project Build' folder and run the executable inside.
+### A-Star
 
-Controls : <br />
-ASWD/Arrow Keys : Move Around <br />
-q/e : Camera Up/Down <br />
-z/x : Camera Look-Left/Look-Right <br />
-Right-Click : Select Targets and Obstacle to Move <br />
-SPACE : Quit Application <br />
+### Particle System
 
-## Difficulties
+## Gameplay Design
 
-One of the main difficulties of the project was the implementation of Inverse Kinematics using FABRIK algorithm which included manually adjusting the rotation and positions of the child components of each segment of the arm (Arm segment and Joint).
+We chose to go with a dark and horroresque theme, so most of our animations and design choices complement this. We chose to use dark materials for the maze walls and narrowed the field of view of the player to better go with the theme of the game. We also chose to animate the monsters based on the gameplay designs. Our monsters move when it sees the player and to indicate this movement we used particle systems to animate fire around the monster. Also it takes less power to render since the particle system is only on when the monster is moving towards the player. We also used A-Star to for pathfinding when the player picks up the pathfinding power up. We chose to use A-Star since it is complete and optimal. This is useful because the maze has at least one solution from the player position to the end goal which the A-Star will find since it is complete. Also since A-Star is optimal it will find the shortest path to the goal, this way the player will be able to reach the goal in the shortest amount of time.
+
 
 ## Video
 
-## Images
+## Progress
+
+(Initial sketch Image here)
+Our initial idea was for Scarper Out was to create a maze game and have obstacles that the user will have to get past to reach the goal. We decided to make the obstacles monsters that chased and attacked the player. We also wanted to use power-ups to help the players defeat the monsters, but later on decided against it. Instead we decided to have the monsters teleport the player to a random location in the maze, and designed the powerups so that it will help the player get to the goal faster. This way it made the game more focused on solving the maze than fighting the monsters. 
+
+(Progress Image here)
+Once we got the basic design for the game, we started implementation of the different elements. First we created the maze using recursive backtracking. Once the maze generation algorithms worked, we had to place nodes along the path so that we could use A-Star to find the best path to the goal. Originally we thought this was going to be easy, however since the maze algorithm only places the walls and doesn't actually create a path, we had to use the grid positions in Unity to place the nodes along the path. Once the nodes were placed we were able to adapt the A-Star algorithm (Add difficulties with A-Star). The other power-ups were fairly straightforward to implement. Also in order to make solving the maze easier we decided to add a star indicator above the end goal in order to help guide the player to the end.
+
+## Peer Feedback
+
+We got a lot of good suggestions to improve our game The feedback we got included:
+-   Increasing the field of view
+-   Adding variations to wall textures
+-   Adding more power-ups
+-   Adding sound effects
+
+We decided to implement a few of them in order to improve the game. First we increased our field of view since originally it was a bit narrow and with the lighting it made it hard to navigate the maze. Second we added sound effects for footsteps, item pick-up, and background. These sound effects greatly improved the immersiveness of the game.
+
+## State of the Art
+
+A lot of the techniques we used were fairly new and state of the art algorithms and techniques, some of which we discussed in class. For example, in Unity we used raycasting to check if a monster can see the player. Unity's raycasting uses spatial search to check if objects will intersect. Unity casts the ray from the object to the bounding box of the collider to check for collisions.  
+
+## Future Upgrades
+
+Our game can be extended and improved in multiple ways. The biggest improvement will be using a better pathfinding algorithm, since A-Star is very slow as the maze gets larger. Given more time we could implement faster algorithms to find a path to the goal. We could also use fewer nodes by placing the nodes in intersections of the maze. This will allow for the A-star algorithm to run faster since there will be fewer nodes to check. Improving the pathfinding will also allow for us to create larger mazes, which will then allow us to create more unique powerups and monsters to make the game more interesting. 
+
+
+
 
 ## References/Links
 
