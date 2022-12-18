@@ -17,9 +17,12 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundMask;
     bool isGrounded;
     public GameManager gameManager;
+    public GameObject gameOverMenuUI;
 
     private void Start()
     {
+        gameOverMenuUI.SetActive(false);
+        Time.timeScale = 1f;
         originalSpeed = speed;
     }
     void Update()
@@ -66,6 +69,12 @@ public class PlayerMovement : MonoBehaviour
     public void PowerUpPath() {
         gameManager.runAStar();
         StartCoroutine(ResetPath());
+    }
+
+    public void GameOver() {
+        Cursor.lockState = CursorLockMode.None;
+        gameOverMenuUI.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     private IEnumerator ResetSpeed() {

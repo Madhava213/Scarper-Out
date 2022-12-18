@@ -105,6 +105,7 @@ GameObject:
   - component: {fileID: 7652337090557558255}
   - component: {fileID: 7652337090557558254}
   - component: {fileID: 7652337090557558249}
+  - component: {fileID: -3370904048756709597}
   m_Layer: 0
   m_Name: GoalIndicatorGround
   m_TagString: Finish
@@ -157,6 +158,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.029953359
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-3370904048756709597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7652337090557558248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32c01ae09075ba842b3e38ef72fc49e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickUp: {fileID: 8300000, guid: 7ca6287235434dc44af932e175e11622, type: 3}
 --- !u!1001 &7652337090111276869
 PrefabInstance:
   m_ObjectHideFlags: 0

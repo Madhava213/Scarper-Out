@@ -15,7 +15,7 @@ public class Monster : MonoBehaviour
         Player = GameObject.FindGameObjectWithTag("Player");
         GameManager = GameObject.FindGameObjectWithTag("GameController");
         FireParticles.Stop();
-        MoveAudio.enabled = false;
+        MoveAudio.Stop();
     }
     private void Update()
     {
@@ -25,14 +25,16 @@ public class Monster : MonoBehaviour
         {
             if(!onFire && hit.collider.gameObject.tag == "Player"){
                 transform.position = Vector3.Lerp(transform.position, hit.collider.gameObject.transform.position, 0.02f);
+                FireParticles.gameObject.SetActive(true);
                 FireParticles.Play();
                 onFire = true;
-                MoveAudio.enabled = true;
+                MoveAudio.Play();
             }
             else if(onFire){
                 onFire = false;
-                FireParticles.Stop();
-                MoveAudio.enabled = false;
+                FireParticles.Pause();
+                FireParticles.gameObject.SetActive(false);
+                MoveAudio.Pause();
             }
             
         }

@@ -16,6 +16,9 @@ public class PowerUp : MonoBehaviour
             else if(this.gameObject.tag == "PathPowerUp"){
                 other.gameObject.GetComponent<PlayerMovement>().PowerUpPath();
             }
+            else if(this.gameObject.tag == "Finish"){
+                other.gameObject.GetComponent<PlayerMovement>().GameOver();
+            }
             AudioSource.PlayClipAtPoint(pickUp, transform.position);
             Destroy(this.gameObject);
         }
