@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
+    public AudioClip pickUp;
     void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "Player"){
             if(this.gameObject.tag == "SpeedPowerUp"){
@@ -15,6 +16,7 @@ public class PowerUp : MonoBehaviour
             else if(this.gameObject.tag == "PathPowerUp"){
                 other.gameObject.GetComponent<PlayerMovement>().PowerUpPath();
             }
+            AudioSource.PlayClipAtPoint(pickUp, transform.position);
             Destroy(this.gameObject);
         }
     }
