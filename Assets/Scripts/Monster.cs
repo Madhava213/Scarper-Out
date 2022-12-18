@@ -7,6 +7,7 @@ public class Monster : MonoBehaviour
     private GameObject Player;
     private GameObject GameManager;
     public ParticleSystem FireParticles;
+    public AudioSource MoveAudio;
     public bool onFire = false;
 
     private void Start()
@@ -14,6 +15,7 @@ public class Monster : MonoBehaviour
         Player = GameObject.FindGameObjectWithTag("Player");
         GameManager = GameObject.FindGameObjectWithTag("GameController");
         FireParticles.Stop();
+        MoveAudio.enabled = false;
     }
     private void Update()
     {
@@ -25,11 +27,14 @@ public class Monster : MonoBehaviour
                 transform.position = Vector3.Lerp(transform.position, hit.collider.gameObject.transform.position, 0.02f);
                 FireParticles.Play();
                 onFire = true;
+                MoveAudio.enabled = true;
             }
             else if(onFire){
                 onFire = false;
                 FireParticles.Stop();
+                MoveAudio.enabled = false;
             }
+            
         }
     }
 
