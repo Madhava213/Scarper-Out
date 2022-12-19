@@ -79,6 +79,10 @@ Our game can be extended and improved in multiple ways. The biggest improvement 
 
 ## Gallery
 
+
+https://media.github.umn.edu/user/17151/files/21d27024-fb29-4bb2-b013-97959b03f7d6
+
+
 ![Maze2](https://media.github.umn.edu/user/17151/files/c73e5c02-37df-48c9-b73e-53110eb28994)
 
 
