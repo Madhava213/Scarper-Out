@@ -50,10 +50,12 @@ Use the button above to navigate to the source code. Find the 'Project Build' fo
 
 ## Progress
 
-(Initial sketch Image here)
+![Maze_Sketch](https://media.github.umn.edu/user/17151/files/7bb69057-d958-46d8-8db5-eb57f10a00de)
+
 Our initial idea was for Scarper Out was to create a maze game and have obstacles that the user will have to get past to reach the goal. We decided to make the obstacles monsters that chased and attacked the player. We also wanted to use power-ups to help the players defeat the monsters, but later on decided against it. Instead we decided to have the monsters teleport the player to a random location in the maze, and designed the powerups so that it will help the player get to the goal faster. This way it made the game more focused on solving the maze than fighting the monsters.
 
-(Progress Image here)
+![Maze](https://media.github.umn.edu/user/17151/files/206c8221-bbb5-4f50-b98a-0cf18cd39656)
+
 Once we got the basic design for the game, we started implementation of the different elements. First we created the maze using recursive backtracking. Once the maze generation algorithms worked, we had to place nodes along the path so that we could use A-Star to find the best path to the goal. Originally we thought this was going to be easy, however since the maze algorithm only places the walls and doesn't actually create a path, we had to use the grid positions in Unity to place the nodes along the path. Once the nodes were placed we were able to adapt the A-Star algorithm (Add difficulties with A-Star). The other power-ups were fairly straightforward to implement. Also in order to make solving the maze easier we decided to add a star indicator above the end goal in order to help guide the player to the end.
 
 ## Peer Feedback
@@ -74,6 +76,11 @@ A lot of the techniques we used were fairly new and state of the art algorithms 
 ## Future Upgrades
 
 Our game can be extended and improved in multiple ways. The biggest improvement will be using a better pathfinding algorithm, since A-Star is very slow as the maze gets larger. Given more time we could implement faster algorithms to find a path to the goal. We could also use fewer nodes by placing the nodes in intersections of the maze. This will allow for the A-star algorithm to run faster since there will be fewer nodes to check. Improving the pathfinding will also allow for us to create larger mazes, which will then allow us to create more unique powerups and monsters to make the game more interesting.
+
+## Gallery
+
+![Maze2](https://media.github.umn.edu/user/17151/files/c73e5c02-37df-48c9-b73e-53110eb28994)
+
 
 ## References/Links
 
